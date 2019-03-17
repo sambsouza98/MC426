@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])){
+    unset($_SESSION['login']);
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +35,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" action="transicao/login_auth.php">
 					<span class="login100-form-title">
 						Sign In
 					</span>
@@ -66,7 +71,7 @@
 							Don’t have an account?
 						</span>
 
-						<a href="cadastro_tipo.php" class="txt3">
+						<a href="exibicao/cadastro_tipo.php" class="txt3">
 							Sign up now
 						</a>
 					</div>

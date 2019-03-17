@@ -1,0 +1,2 @@
+1. Criar log do resultado de solicitações de cadastro de hospitais, visível para o admin
+2. Criptografar senha antes de armazenar na base de dados
