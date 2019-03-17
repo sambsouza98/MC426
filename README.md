@@ -6,7 +6,7 @@ Alunos:
 Gabriela Vitoria Rezzo de Souza
 Erick Kussumoto do Nascimento
 Samuel Batista de Souza
-Rafael Scherr
+Rafael Scherer
 Caio Augusto Nolasco
 
 Proposta:
