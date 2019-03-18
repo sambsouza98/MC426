@@ -1,2 +1,14 @@
 1. Criar log do resultado de solicitações de cadastro de hospitais, visível para o admin
 2. Criptografar senha antes de armazenar na base de dados
+3. Solicitação de fechamento de hospitais, enviada para o admin
+4. Solicitação de desativamento de usuário(médico/hospital), enviada para o admin
+5. Trocar campo endereço da tabela Hospital por CEP?
+6. Verificação dinâmica de emails duplicados (durante o cadastro)
+7. Permitir que o paciente especifique horário, dia e tipo de consulta durante a solicitação de agendamento (será necessário alterar tabela Agendamento)
+8. Permitir que o paciente verifique a disponibilidade de consultas no horário e/ou dia desejado
+9. Permitir que o paciente acompanhe o status da solicitação de agendamento
+10. Consertar delay na exibição de médicos recém-cadastrados em hospital_medicos.php
+11. Ao alterar dados cadastrais, exibir mensagem indicando se a operação foi bem sucedida
+12. Especificar dominios de email aceitos
+13. Permitir que pacientes alterem dados de uma solicitação de agendamento ainda não processada
+14. Exibir consultas futuras para pacientes, medicos e hospitais

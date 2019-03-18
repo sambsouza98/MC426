@@ -4,23 +4,32 @@
     <?php
     require('../transicao/session.php');
     require('../transicao/connection.php');
+    if($_SESSION['tipoUsuario'] != 0){
+        unset($_SESSION['tipoUsuario']);
+        header("Location: ../index.php");
+    }
     ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
-<div style="width: 100%; background-color: lightseagreen; text-align:right">
-    <form action="../index.php">
+<div style="width: 100%; background-color: lightseagreen; text-align: right">
+    <form action="admin_index.php" style=" display:inline-block;">
+        <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-log-out"></span> Index
+        </button>
+    </form>
+    <form action="admin_cadastro.php" style=" display:inline-block;">
+        <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-log-out"></span> Cadastro
+        </button>
+    </form>
+    <form action="../index.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Log out
-        </button><br><br>
+        </button><br>
     </form>
 </div>
 <div class="container">
-    <?php
-    $sql = "SELECT * FROM Hospital WHERE autenticado = 0";
-    $solicitacoes = mysqli_query($conn, $sql);
-    ?>
     <h3>Solicitações pendentes</h3>
         <table class="table">
             <thead>
@@ -33,6 +42,9 @@
             </thead>
             <tbody>
             <?php
+            $sql = "SELECT * FROM Hospital WHERE autenticado = 0";
+            $solicitacoes = mysqli_query($conn, $sql);
+
             foreach($solicitacoes as $solicitacao){
                 $html = "<form action='admin_analise.php' method='post'>";
                     $html .= "<tr>";

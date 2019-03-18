@@ -1,6 +1,10 @@
 <?php
-require("../transicao/session.php");
+require('../transicao/session.php');
 require('../transicao/connection.php');
+if($_SESSION['tipoUsuario'] != 0){
+    unset($_SESSION['tipoUsuario']);
+    header("Location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +20,17 @@ $sql = "SELECT * FROM Hospital WHERE cnpj = '$cnpj'";
 $info = mysqli_fetch_assoc(mysqli_query($conn, $sql));?>
 
 <div style="width: 100%; background-color: lightseagreen; text-align:right">
-    <form action="../index.php">
+    <form action="admin_index.php" style=" display:inline-block;">
+        <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-log-out"></span> Index
+        </button>
+    </form>
+    <form action="admin_cadastro.php" style=" display:inline-block;">
+        <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-log-out"></span> Cadastro
+        </button>
+    </form>
+    <form action="../index.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Log out
         </button><br><br>

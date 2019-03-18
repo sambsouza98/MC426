@@ -1,7 +1,7 @@
 <?php
 require('../transicao/session.php');
 require('../transicao/connection.php');
-if($_SESSION['tipoUsuario'] != 1){
+if($_SESSION['tipoUsuario'] != 0){
     unset($_SESSION['tipoUsuario']);
     header("Location: ../index.php");
 }
@@ -14,19 +14,18 @@ if($_SESSION['tipoUsuario'] != 1){
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
+<?php
+$idUsuario = $_SESSION['idUsuario'];
+$sql = "SELECT email, senha FROM Usuario WHERE idUsuario = '$idUsuario'";
+$info = mysqli_fetch_assoc(mysqli_query($conn, $sql));?>
 
 <div style="width: 100%; background-color: lightseagreen; text-align: right">
-    <form action="hospital_index.php" style=" display:inline-block;">
+    <form action="admin_index.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Index
         </button>
     </form>
-    <form action="hospital_medicos.php" style=" display:inline-block">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Médicos
-        </button>
-    </form>
-    <form action="hospital_cadastro.php" style=" display:inline-block;">
+    <form action="admin_cadastro.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Cadastro
         </button>
@@ -39,20 +38,15 @@ if($_SESSION['tipoUsuario'] != 1){
     <br>
 </div>
 <div class="container">
-    <form id="contact" method="post" action="../transicao/hospital_adiciona_medico_processamento.php">
-        <h3>Cadastro Médico</h3>
-        <label for="crm">CRM</label>
-        <input type="text" name="crm" id="crm">
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
-        <label for="cpf">CPF</label>
-        <input type="text" name="cpf" id="cpf">
+    <form id="contact" method="post" action="../transicao/admin_altera_cadastro.php">
+        <h3>Informações cadastrais</h3>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+        <input type="text" id="email" name='email' value=<?php echo $info['email'];?> required>
+        <label for="novaSenha">Nova senha</label>
+        <input type="text" id="novaSenha" name='novaSenha'>
         <label for="senha">Senha</label>
-        <input type="text" name="senha" id="senha">
-        <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-
+        <input type="text" id="senha" name="senha" required>
+        <button type="submit" class="btn btn-primary btn-lg">Alterar</button>
     </form>
 </div>
 </body>

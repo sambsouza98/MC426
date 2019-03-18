@@ -4,7 +4,7 @@
     <?php
     require('../transicao/session.php');
     require('../transicao/connection.php');
-    if($_SESSION['tipoUsuario'] != 1){
+    if($_SESSION['tipoUsuario'] != 3){
         unset($_SESSION['tipoUsuario']);
         header("Location: ../index.php");
     }
@@ -13,17 +13,17 @@
 </head>
 <body>
 <div style="width: 100%; background-color: lightseagreen; text-align: right">
-    <form action="hospital_index.php" style=" display:inline-block;">
+    <form action="paciente_index.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Index
         </button>
     </form>
-    <form action="hospital_medicos.php" style=" display:inline-block">
+    <form action="paciente_agendamento.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Médicos
+            <span class="glyphicon glyphicon-log-out"></span> Agendar consulta
         </button>
     </form>
-    <form action="hospital_cadastro.php" style=" display:inline-block;">
+    <form action="paciente_cadastro.php" style=" display:inline-block;">
         <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-log-out"></span> Cadastro
         </button>
@@ -40,8 +40,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Nome</th>
-            <th>CPF</th>
+            <th>Hospital</th>
             <th>Email</th>
             <th>Data de Solicitação</th>
             <th></th>
@@ -49,18 +48,17 @@
         </thead>
         <tbody>
         <?php
-        $cnpj = $_SESSION['cnpj'];
-        $sql = "SELECT A.cpf, A.dataDeSolicitacao, P.nome, P.email  FROM Agendamento AS A INNER JOIN PACIENTE AS P ON (A.cpf = P.cpf) AND A.cnpj = '$cnpj' AND A.processado = 0";
+        $cpf = $_SESSION['cpf'];
+        $sql = "SELECT A.dataDeSolicitacao, H.nome, H.email  FROM Agendamento AS A INNER JOIN Hospital AS H ON (A.cnpj = H.cnpj) AND A.cpf = '$cpf' AND A.processado = 0";
         $solicitacoes = mysqli_query($conn, $sql);
 
         foreach($solicitacoes as $solicitacao){
             $html = "<form>";
             $html .= "<tr>";
             $html .= "<td>".$solicitacao['nome']."</td>";
-            $html .= "<td>".$solicitacao['cpf']."</td>";
             $html .= "<td>".$solicitacao['email']."</td>";
             $html .= "<td>".date('d/m/y', strtotime($solicitacao['dataDeSolicitacao']))."</td>";
-            $html .= "<td><button>Analisar</button></td>";
+            $html .= "<td><button>Modificar</button></td>";
             $html .= "</tr>";
             $html .= "</form>";
             echo $html;
@@ -69,6 +67,7 @@
     </table>
 
 </div>
+
 </body>
 </html>
 

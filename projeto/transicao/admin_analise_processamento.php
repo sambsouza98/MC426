@@ -1,6 +1,10 @@
 <?php
-require('session.php');
-require('connection.php');
+require('../transicao/session.php');
+require('../transicao/connection.php');
+if($_SESSION['tipoUsuario'] != 0){
+    unset($_SESSION['tipoUsuario']);
+    header("Location: ../index.php");
+}
 
 $res = $_POST['res'];
 $cnpj = $_POST['cnpj'];
@@ -15,5 +19,4 @@ if($res == 1){
 mysqli_close($conn);
 
 mysqli_close($conn);
-header("Location: ../exibicao/admin_index.php", true, 301);
-exit();
+header("Location: ../exibicao/admin_index.php");

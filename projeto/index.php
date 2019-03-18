@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['login'])){
-    unset($_SESSION['login']);
+if(isset($_SESSION['tipoUsuario'])){
+    unset($_SESSION['tipoUsuario']);
 }?>
 <!DOCTYPE html>
 <html lang="en">

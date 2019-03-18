@@ -1,6 +1,10 @@
 <?php
-require("../transicao/session.php");
+require('../transicao/session.php');
 require('../transicao/connection.php');
+if($_SESSION['tipoUsuario'] != 1){
+    unset($_SESSION['tipoUsuario']);
+    header("Location: ../index.php");
+}
 
 $crm = $_POST['crm'];
 $cpf = $_POST['cpf'];
@@ -10,7 +14,7 @@ $senha = $_POST['senha'];
 $cnpj = $_SESSION['cnpj'];
 $dataDeInclusao = date('y.m.d');
 
-$sql = "INSERT INTO Usuario (email, senha, tipoUsuario, dataDeInclusao) VALUES ('$email', '$senha', 3, '$dataDeInclusao');
+$sql = "INSERT INTO Usuario (email, senha, tipoUsuario, dataDeInclusao) VALUES ('$email', '$senha', 2, '$dataDeInclusao');
         INSERT INTO Medico (crm, cpf, nome, email, idUsuario) VALUES ('$crm', '$cpf', '$nome', '$email', (SELECT idUsuario FROM Usuario WHERE email = '$email'));
         INSERT INTO MedicoHospital (crm, cnpj) VALUES ('$crm', '$cnpj')";
 if (mysqli_multi_query($conn, $sql)) {
@@ -19,6 +23,5 @@ if (mysqli_multi_query($conn, $sql)) {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-header("Location: ../exibicao/hospital_medicos.php", true, 301);
-exit();
+header("Location: ../exibicao/hospital_medicos.php");
 

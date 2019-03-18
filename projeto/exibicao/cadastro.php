@@ -37,11 +37,9 @@
 <?php
 $tipo = $_POST['tipo_usuario'];
 if($tipo == 'paciente'){
-    $placeholder_cpf = 'CPF';
-    $placeholder_nascimento = 'Data de Nascimento';}
+    $placeholder_cpf = 'CPF';}
 else{
-    $placeholder_cpf = 'CNPJ';
-    $placeholder_nascimento = 'Data de Fundação';}
+    $placeholder_cpf = 'CNPJ';}
 ?>
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
                     <input class="input100" type="text" name="nome" placeholder="Nome">
@@ -50,6 +48,11 @@ else{
 
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
                     <input class="input100" type="text" name="cpf" placeholder=<?php echo $placeholder_cpf;?>>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                    <input class="input100" type="date" name="dataDeCriacao">
                     <span class="focus-input100"></span>
                 </div>
 
