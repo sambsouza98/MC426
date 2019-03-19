@@ -63,14 +63,24 @@ CREATE TABLE Agendamento(
 idAgendamento INT NOT NULL AUTO_INCREMENT,
 cpf INT NOT NULL,
 cnpj INT NOT NULL,
-crm INT,
-dataDeConsulta DATE,
-dataDeSolicitacao DATE NOT NULL,
+crm INT ,
+dataConsulta DATE,
+horarioConsulta TIME,
+dataSolicitacao DATE NOT NULL,
 processado BOOLEAN DEFAULT FALSE,
 PRIMARY KEY(idAgendamento),
 FOREIGN KEY (cpf) REFERENCES Paciente(cpf),
 FOREIGN KEY (cnpj) REFERENCES Hospital(cnpj),
 FOREIGN KEY (crm) REFERENCES Medico(crm)
+);
+
+CREATE TABLE Consulta(
+idAgendamento INT,
+medicamento VARCHAR(50),
+exame VARCHAR(50),
+doenca VARCHAR(50),
+tipoConsulta VARCHAR(50),
+PRIMARY KEY(idAgendamento)
 );
 
 INSERT INTO Usuario (email, senha, tipoUsuario, DataDeInclusao) VALUES ("admin@admin.com", "admin", 0, "2019-03-16") 

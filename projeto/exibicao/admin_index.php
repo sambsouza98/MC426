@@ -2,12 +2,12 @@
 <html>
 <head>
     <?php
-    require('../transicao/session.php');
-    require('../transicao/connection.php');
-    if($_SESSION['tipoUsuario'] != 0){
+    session_start();
+    if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 0){
         unset($_SESSION['tipoUsuario']);
         header("Location: ../index.php");
     }
+    require('../transicao/connection.php');
     ?>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>

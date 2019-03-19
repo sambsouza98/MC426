@@ -2,12 +2,12 @@
 <html>
 <head>
     <?php
-    require('../transicao/session.php');
-    require('../transicao/connection.php');
-    if($_SESSION['tipoUsuario'] != 3){
+    session_start();
+    if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 3){
         unset($_SESSION['tipoUsuario']);
         header("Location: ../index.php");
     }
+    require('../transicao/connection.php');
     ?>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
@@ -36,8 +36,14 @@
     <br>
 </div>
 <div class="container">
-    <h3>Solicitações de agendamento pendentes</h3>
-    <table class="table">
+        <?php
+        $cpf = $_SESSION['cpf'];
+        $sql = "SELECT A.dataSolicitacao, H.nome, H.email  FROM Agendamento AS A INNER JOIN Hospital AS H ON (A.cnpj = H.cnpj) AND A.cpf = '$cpf' AND A.processado = 0";
+        $solicitacoes = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($solicitacoes) > 0)
+        {
+            echo "<h3>Solicitações de agendamento pendentes</h3>
+    <table class=\"table\">
         <thead>
         <tr>
             <th>Hospital</th>
@@ -46,25 +52,51 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
-        <?php
-        $cpf = $_SESSION['cpf'];
-        $sql = "SELECT A.dataDeSolicitacao, H.nome, H.email  FROM Agendamento AS A INNER JOIN Hospital AS H ON (A.cnpj = H.cnpj) AND A.cpf = '$cpf' AND A.processado = 0";
-        $solicitacoes = mysqli_query($conn, $sql);
+        <tbody>";
 
         foreach($solicitacoes as $solicitacao){
             $html = "<form>";
             $html .= "<tr>";
             $html .= "<td>".$solicitacao['nome']."</td>";
             $html .= "<td>".$solicitacao['email']."</td>";
-            $html .= "<td>".date('d/m/y', strtotime($solicitacao['dataDeSolicitacao']))."</td>";
-            $html .= "<td><button>Modificar</button></td>";
+            $html .= "<td>".date('d/m/y', strtotime($solicitacao['dataSolicitacao']))."</td>";
             $html .= "</tr>";
             $html .= "</form>";
             echo $html;
-        } ?>
-        </tbody>
-    </table>
+        }
+        echo "</tbody>
+    </table>";
+        }
+        $sql = "SELECT A.dataConsulta, A.horarioConsulta, H.nome, M.nome AS nomeMedico  FROM Agendamento AS A INNER JOIN Hospital AS H ON (A.cnpj = H.cnpj) INNER JOIN Medico AS M ON A.crm = M.crm AND A.cpf = '$cpf' AND A.processado = 1";
+        $consultas = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($consultas) > 0){
+            echo "<h3>Consultas marcadas</h3>
+    <table class=\"table\">
+        <thead>
+        <tr>
+            <th>Hospital</th>
+            <th>Médico</th>
+            <th>Data de Consulta</th>
+            <th>Horário de Consulta</th>
+        </tr>
+        </thead>
+        <tbody>";
+
+            foreach($consultas as $consulta){
+                $html = "<form>";
+                $html .= "<tr>";
+                $html .= "<td>".$consulta['nome']."</td>";
+                $html .= "<td>".$consulta['nomeMedico']."</td>";
+                $html .= "<td>".date('d/m/y', strtotime($consulta['dataConsulta']))."</td>";
+                $html .= "<td>".date('H:i:s', strtotime($consulta['horarioConsulta']))."</td>";
+                $html .= "</tr>";
+                $html .= "</form>";
+                echo $html;
+            }
+            echo "</tbody>
+    </table>";
+        }
+        ?>
 
 </div>
 

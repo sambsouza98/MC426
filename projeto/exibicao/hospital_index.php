@@ -2,12 +2,12 @@
 <html>
 <head>
     <?php
-    require('../transicao/session.php');
-    require('../transicao/connection.php');
-    if($_SESSION['tipoUsuario'] != 1){
+    session_start();
+    if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 1){
         unset($_SESSION['tipoUsuario']);
         header("Location: ../index.php");
     }
+    require('../transicao/connection.php');
     ?>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
@@ -50,16 +50,18 @@
         <tbody>
         <?php
         $cnpj = $_SESSION['cnpj'];
-        $sql = "SELECT A.cpf, A.dataDeSolicitacao, P.nome, P.email  FROM Agendamento AS A INNER JOIN PACIENTE AS P ON (A.cpf = P.cpf) AND A.cnpj = '$cnpj' AND A.processado = 0";
+        $sql = "SELECT A.cpf, A.dataSolicitacao, A.idAgendamento, P.nome, P.email  FROM Agendamento AS A INNER JOIN PACIENTE AS P ON (A.cpf = P.cpf) AND A.cnpj = '$cnpj' AND A.processado = 0";
         $solicitacoes = mysqli_query($conn, $sql);
 
         foreach($solicitacoes as $solicitacao){
-            $html = "<form>";
+            $html = "<form action='hospital_consulta.php' method='post'>";
             $html .= "<tr>";
             $html .= "<td>".$solicitacao['nome']."</td>";
             $html .= "<td>".$solicitacao['cpf']."</td>";
             $html .= "<td>".$solicitacao['email']."</td>";
-            $html .= "<td>".date('d/m/y', strtotime($solicitacao['dataDeSolicitacao']))."</td>";
+            $html .= "<td>".date('d/m/y', strtotime($solicitacao['dataSolicitacao']))."</td>";
+            $html .= "<input type='hidden' name='nome' value=".$solicitacao['nome'].">";
+            $html .= "<input type='hidden' name='idAgendamento' value=".$solicitacao['idAgendamento'].">";
             $html .= "<td><button>Analisar</button></td>";
             $html .= "</tr>";
             $html .= "</form>";

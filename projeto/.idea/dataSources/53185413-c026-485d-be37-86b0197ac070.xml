@@ -1108,345 +1108,382 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="278" parent="3" name="agendamento"/>
-    <table id="279" parent="3" name="hospital"/>
-    <table id="280" parent="3" name="medico"/>
-    <table id="281" parent="3" name="medicohospital"/>
-    <table id="282" parent="3" name="paciente"/>
-    <table id="283" parent="3" name="usuario"/>
-    <column id="284" parent="278" name="idAgendamento">
+    <table id="279" parent="3" name="consulta"/>
+    <table id="280" parent="3" name="hospital"/>
+    <table id="281" parent="3" name="medico"/>
+    <table id="282" parent="3" name="medicohospital"/>
+    <table id="283" parent="3" name="paciente"/>
+    <table id="284" parent="3" name="usuario"/>
+    <column id="285" parent="278" name="idAgendamento">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="278" name="cpf">
+    <column id="286" parent="278" name="cpf">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="278" name="cnpj">
+    <column id="287" parent="278" name="cnpj">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="278" name="crm">
+    <column id="288" parent="278" name="crm">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="278" name="dataDeConsulta">
+    <column id="289" parent="278" name="dataConsulta">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="278" name="dataDeSolicitacao">
+    <column id="290" parent="278" name="horarioConsulta">
       <Position>6</Position>
+      <DataType>time|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="278" name="dataSolicitacao">
+      <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="278" name="processado">
-      <Position>7</Position>
+    <column id="292" parent="278" name="processado">
+      <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="291" parent="278" name="cpf">
+    <index id="293" parent="278" name="cpf">
       <ColNames>cpf</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="292" parent="278" name="cnpj">
+    <index id="294" parent="278" name="cnpj">
       <ColNames>cnpj</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="293" parent="278" name="crm">
+    <index id="295" parent="278" name="crm">
       <ColNames>crm</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="294" parent="278" name="PRIMARY">
+    <key id="296" parent="278" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idAgendamento</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="295" parent="278" name="agendamento_ibfk_1">
+    <foreign-key id="297" parent="278" name="agendamento_ibfk_1">
       <ColNames>cpf</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>paciente</RefTableName>
       <RefColNames>cpf</RefColNames>
     </foreign-key>
-    <foreign-key id="296" parent="278" name="agendamento_ibfk_2">
+    <foreign-key id="298" parent="278" name="agendamento_ibfk_2">
       <ColNames>cnpj</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>hospital</RefTableName>
       <RefColNames>cnpj</RefColNames>
     </foreign-key>
-    <foreign-key id="297" parent="278" name="agendamento_ibfk_3">
+    <foreign-key id="299" parent="278" name="agendamento_ibfk_3">
       <ColNames>crm</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>medico</RefTableName>
       <RefColNames>crm</RefColNames>
     </foreign-key>
-    <column id="298" parent="279" name="cnpj">
+    <column id="300" parent="279" name="idAgendamento">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="279" name="nome">
+    <column id="301" parent="279" name="medicamento">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="302" parent="279" name="exame">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="303" parent="279" name="doenca">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="304" parent="279" name="tipoConsulta">
+      <Position>5</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="305" parent="279" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idAgendamento</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="306" parent="280" name="cnpj">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="280" name="nome">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="279" name="email">
+    <column id="308" parent="280" name="email">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="279" name="telefone">
+    <column id="309" parent="280" name="telefone">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="279" name="endereco">
+    <column id="310" parent="280" name="endereco">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="279" name="dataDeAbertura">
+    <column id="311" parent="280" name="dataDeAbertura">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="279" name="dataDeFechamento">
+    <column id="312" parent="280" name="dataDeFechamento">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="279" name="autenticado">
+    <column id="313" parent="280" name="autenticado">
       <Position>8</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="279" name="conveniosAceitos">
+    <column id="314" parent="280" name="conveniosAceitos">
       <Position>9</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="279" name="idUsuario">
+    <column id="315" parent="280" name="idUsuario">
       <Position>10</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="308" parent="279" name="idUsuario">
+    <index id="316" parent="280" name="idUsuario">
       <ColNames>idUsuario</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="309" parent="279" name="PRIMARY">
+    <key id="317" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>cnpj</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="310" parent="279" name="hospital_ibfk_1">
+    <foreign-key id="318" parent="280" name="hospital_ibfk_1">
       <ColNames>idUsuario</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>usuario</RefTableName>
       <RefColNames>idUsuario</RefColNames>
     </foreign-key>
-    <column id="311" parent="280" name="crm">
+    <column id="319" parent="281" name="crm">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="280" name="cpf">
+    <column id="320" parent="281" name="cpf">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="280" name="nome">
+    <column id="321" parent="281" name="nome">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="280" name="especializacao">
+    <column id="322" parent="281" name="especializacao">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="280" name="telefone">
+    <column id="323" parent="281" name="telefone">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="280" name="email">
+    <column id="324" parent="281" name="email">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="280" name="idUsuario">
+    <column id="325" parent="281" name="idUsuario">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="318" parent="280" name="idUsuario">
+    <index id="326" parent="281" name="idUsuario">
       <ColNames>idUsuario</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="319" parent="280" name="PRIMARY">
+    <key id="327" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>crm</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="320" parent="280" name="medico_ibfk_1">
+    <foreign-key id="328" parent="281" name="medico_ibfk_1">
       <ColNames>idUsuario</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>usuario</RefTableName>
       <RefColNames>idUsuario</RefColNames>
     </foreign-key>
-    <column id="321" parent="281" name="crm">
+    <column id="329" parent="282" name="crm">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="281" name="cnpj">
+    <column id="330" parent="282" name="cnpj">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="323" parent="281" name="crm">
+    <index id="331" parent="282" name="crm">
       <ColNames>crm</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="324" parent="281" name="cnpj">
+    <index id="332" parent="282" name="cnpj">
       <ColNames>cnpj</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="325" parent="281" name="medicohospital_ibfk_1">
+    <foreign-key id="333" parent="282" name="medicohospital_ibfk_1">
       <ColNames>crm</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>medico</RefTableName>
       <RefColNames>crm</RefColNames>
     </foreign-key>
-    <foreign-key id="326" parent="281" name="medicohospital_ibfk_2">
+    <foreign-key id="334" parent="282" name="medicohospital_ibfk_2">
       <ColNames>cnpj</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>hospital</RefTableName>
       <RefColNames>cnpj</RefColNames>
     </foreign-key>
-    <column id="327" parent="282" name="cpf">
+    <column id="335" parent="283" name="cpf">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="282" name="nome">
+    <column id="336" parent="283" name="nome">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="282" name="email">
+    <column id="337" parent="283" name="email">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="282" name="telefone">
+    <column id="338" parent="283" name="telefone">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="282" name="dataDeNascimento">
+    <column id="339" parent="283" name="dataDeNascimento">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="282" name="convenio">
+    <column id="340" parent="283" name="convenio">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="282" name="sexo">
+    <column id="341" parent="283" name="sexo">
       <Position>7</Position>
       <DataType>char(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="282" name="tipoSanguineo">
+    <column id="342" parent="283" name="tipoSanguineo">
       <Position>8</Position>
       <DataType>varchar(3)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="282" name="alergias">
+    <column id="343" parent="283" name="alergias">
       <Position>9</Position>
       <DataType>varchar(128)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="336" parent="282" name="idUsuario">
+    <column id="344" parent="283" name="idUsuario">
       <Position>10</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="337" parent="282" name="idUsuario">
+    <index id="345" parent="283" name="idUsuario">
       <ColNames>idUsuario</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="338" parent="282" name="PRIMARY">
+    <key id="346" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>cpf</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="339" parent="282" name="paciente_ibfk_1">
+    <foreign-key id="347" parent="283" name="paciente_ibfk_1">
       <ColNames>idUsuario</ColNames>
       <RefSchemaName>health</RefSchemaName>
       <RefTableName>usuario</RefTableName>
       <RefColNames>idUsuario</RefColNames>
     </foreign-key>
-    <column id="340" parent="283" name="idUsuario">
+    <column id="348" parent="284" name="idUsuario">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="283" name="email">
+    <column id="349" parent="284" name="email">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="342" parent="283" name="senha">
+    <column id="350" parent="284" name="senha">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="283" name="tipoUsuario">
+    <column id="351" parent="284" name="tipoUsuario">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="283" name="dataDeInclusao">
+    <column id="352" parent="284" name="dataDeInclusao">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="345" parent="283" name="PRIMARY">
+    <key id="353" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idUsuario</ColNames>
       <Primary>1</Primary>

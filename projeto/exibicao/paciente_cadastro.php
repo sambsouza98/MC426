@@ -1,10 +1,10 @@
 <?php
-    require('../transicao/session.php');
-    require('../transicao/connection.php');
-    if($_SESSION['tipoUsuario'] != 3){
+    session_start();
+    if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 3){
         unset($_SESSION['tipoUsuario']);
         header("Location: ../index.php");
     }
+require('../transicao/connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

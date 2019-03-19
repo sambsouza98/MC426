@@ -12,7 +12,7 @@ if (mysqli_num_rows($res) > 0) {
     $idUsuario = $res['idUsuario'];
     $_SESSION['idUsuario'] = $res['idUsuario'];
     $_SESSION['tipoUsuario'] = $res['tipoUsuario'];
-    
+
     switch($res['tipoUsuario']){
         case 0:
             $header = '../exibicao/admin_index.php';

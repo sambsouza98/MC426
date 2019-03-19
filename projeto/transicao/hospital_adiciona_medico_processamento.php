@@ -1,10 +1,10 @@
 <?php
-require('../transicao/session.php');
-require('../transicao/connection.php');
-if($_SESSION['tipoUsuario'] != 1){
+session_start();
+if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 1){
     unset($_SESSION['tipoUsuario']);
     header("Location: ../index.php");
 }
+require('../transicao/connection.php');
 
 $crm = $_POST['crm'];
 $cpf = $_POST['cpf'];
