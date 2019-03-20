@@ -8,7 +8,7 @@ require('../transicao/connection.php');
 
 $email = $_POST['email'];
 $telefone = empty($_POST['telefone']) ? null : $_POST['telefone'];
-$dataDeNascimento = empty($_POST['dataDeNascimento']) ? null : $_POST['dataDeNascimento'];
+$dataDeNascimento = empty($_POST['dataDeNascimento']) ? null : date('y-m-d', strtotime($_POST['dataDeNascimento']));
 $tipoSanguineo = empty($_POST['tipoSanguineo']) ? null : $_POST['tipoSanguineo'];
 $sexo = empty($_POST['sexo']) ? null : $_POST['sexo'];
 $alergias = empty($_POST['alergias']) ? null : $_POST['alergias'];
@@ -25,7 +25,7 @@ if(mysqli_num_rows($res) > 0){
         $sql = "UPDATE Usuario SET senha='$novaSenha' WHERE idUsuario='$idUsuario'";
         mysqli_query($conn, $sql);
     }
-    $sql = "UPDATE Paciente SET email='$email', telefone='$telefone', tipoSanguineo='$tipoSanguineo', sexo='$sexo', alergias='$alergias', convenio='$convenio' WHERE idUsuario='$idUsuario'";
+    $sql = "UPDATE Paciente SET email='$email', telefone='$telefone', tipoSanguineo='$tipoSanguineo', sexo='$sexo', alergias='$alergias', convenio='$convenio', dataDeNascimento='$dataDeNascimento' WHERE idUsuario='$idUsuario'";
     mysqli_query($conn, $sql);
 }
 header("Location: ../exibicao/paciente_cadastro.php");

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <title>Médicos</title>
     <?php
     session_start();
     if(!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 1){
@@ -9,41 +10,46 @@
     }
     require('../transicao/connection.php');
     ?>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div style="width: 100%; background-color: lightseagreen; text-align: right">
-    <form action="hospital_index.php" style=" display:inline-block;">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Index
-        </button>
-    </form>
-    <form action="hospital_medicos.php" style=" display:inline-block">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Médicos
-        </button>
-    </form>
-    <form action="hospital_cadastro.php" style=" display:inline-block;">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Cadastro
-        </button>
-    </form>
-    <form action="../index.php" style=" display:inline-block;">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Log out
-        </button>
-    </form>
-    <br>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightseagreen">
+    <h4 class="font-weight-bold text-light">SSN</h4>
+    <div style="width: 100%; text-align: right">
+        <form action="hospital_index.php" style=" display:inline-block;">
+            <button type="submit" class="btn btn-light font-weight-bold" style="color:white; background-color: lightseagreen; padding: 5px">
+                <span class="glyphicon glyphicon-log-out"></span> Página Inicial
+            </button>
+        </form>
+        <form action="hospital_medicos.php" style=" display:inline-block;">
+            <button type="submit" class="btn btn-light font-weight-bold" style="color:white; background-color: lightseagreen; padding: 5px">
+                <span class="glyphicon glyphicon-log-out"></span> Médicos
+            </button>
+        </form>
+        <form action="hospital_cadastro.php" style=" display:inline-block;">
+            <button type="submit" class="btn btn-light font-weight-bold" style="color:white; background-color: lightseagreen; padding: 5px">
+                <span class="glyphicon glyphicon-log-out"></span> Usuário
+            </button>
+        </form>
+        <form action="../index.php" style=" display:inline-block;">
+            <button type="submit" class="btn btn-light font-weight-bold" style="color:white; background-color: lightseagreen; padding: 5px">
+                <span class="glyphicon glyphicon-log-out"></span> Logout
+            </button>
+        </form>
+    </div>
+</nav>
 <div class="container">
-    <h3>Médicos</h3>
+    <h3 class="p-t-10 p-b-10"></h3>
     <form action="hospital_adiciona_medico.php">
-        <button type="submit" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-log-out"></span> Adicionar Médico
+        <button type="submit" class="btn btn-dark">
+            Adicionar Médico
         </button>
+        <p class="t-b-10"></p>
     </form>
     <table class="table">
-        <thead>
+        <thead class="thead-light">
         <tr>
             <th>Nome</th>
             <th>Especialização</th>
@@ -56,7 +62,7 @@
         $medicos = mysqli_query($conn, $sql);
 
         foreach($medicos as $medico){
-                $html = "<tr>";
+                $html = "<tr class='table-light'>";
                     $html .= "<td>".$medico['nome']."</td>";
                     $html .= "<td>".(is_null($medico['especializacao']) ? "N/A" : $medico['especializacao'])."</td>";
                 $html .= "</tr>";

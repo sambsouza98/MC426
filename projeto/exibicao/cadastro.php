@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <title>Cadastro</title>
     <meta charset="UTF-8">
@@ -24,46 +24,42 @@
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <!--===============================================================================================-->
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightseagreen">
+    <h4 class="font-weight-bold text-light">SSN</h4>
+</nav>
 <div class="limiter">
     <div class="container-login100">
-        <div class="wrap-login100">
-            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" action="../transicao/cadastro_auth.php">
-					<span class="login100-form-title">
-						Sign In
+        <div class="wrap-login101">
+            <form class="login100-form validate-form p-l-55 p-r-55 p-t-30" method="post" action="../transicao/cadastro_auth.php">
+					<span class="login100-form-title p-b-10">
+						Cadastro
 					</span>
-<?php
-$tipo = $_POST['tipo_usuario'];
-if($tipo == 'paciente'){
-    $placeholder_cpf = 'CPF';}
-else{
-    $placeholder_cpf = 'CNPJ';}
-?>
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                    <input class="input100" type="text" name="nome" placeholder="Nome">
+                <div class="wrap-input100 validate-input m-b-16">
+                    <select class="form-control" name="tipoUsuario">
+                        <option value="paciente">Paciente</option>
+                        <option value="hospital">Hospital</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Nome necessário">
+                    <input class="form-control" type="text" name="nome" placeholder="Nome" required>
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                    <input class="input100" type="text" name="cpf" placeholder=<?php echo $placeholder_cpf;?>>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="CPF/CNPJ necessário">
+                    <input class="form-control" type="text" name="cpf" placeholder="CPF/CNPJ" required>
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                    <input class="input100" type="date" name="dataDeCriacao">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Email necessário">
+                    <input class="form-control" type="text" name="email" placeholder="Email" required>
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                    <input class="input100" type="text" name="email" placeholder="Email">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-                    <input class="input100" type="password" name="senha" placeholder="Senha">
-                    <input class="input100" type="hidden" name="tipo" value=<?php echo $tipo;?>>
+                <div class="wrap-input100 validate-input" data-validate = "Senha necessária">
+                    <input class="form-control" type="password" name="senha" placeholder="Senha" required>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -79,21 +75,17 @@ else{
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Sign up
+                        Finalizar cadastro
                     </button>
                 </div>
-
-                <div class="flex-col-c p-t-170 p-b-40">
-						<span class="txt1 p-b-9">
-
-						</span>
-
-
-                </div>
+                <div class="container-login100-form-btn m-t-17 p-b-30">
+                    <button class="login100-form-btn" onclick="location.href = '../index.php'">
+                        Voltar
+                    </button>
             </form>
+            </div>
         </div>
     </div>
-</div>
 
 
 <!--===============================================================================================-->

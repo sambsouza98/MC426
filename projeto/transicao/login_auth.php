@@ -6,7 +6,6 @@ $senha = $_POST['senha'];
 require("connection.php");
 $sql = "SELECT tipoUsuario, idUsuario FROM Usuario WHERE email = '$email' AND senha = '$senha'";
 $res = mysqli_query($conn, $sql);
-
 if (mysqli_num_rows($res) > 0) {
     $res = mysqli_fetch_assoc($res);
     $idUsuario = $res['idUsuario'];

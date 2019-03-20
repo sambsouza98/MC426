@@ -9,7 +9,7 @@ require('../transicao/connection.php');
 $email = $_POST['email'];
 $endereco = empty($_POST['endereco']) ? null : $_POST['endereco'];
 $telefone = empty($_POST['telefone']) ? null : $_POST['telefone'];
-$dataDeAbertura = empty($_POST['dataDeAbertura']) ? null : $_POST['dataDeAbertura'];
+$dataDeAbertura = empty($_POST['dataDeAbertura']) ? null : date('y-m-d', strtotime($_POST['dataDeAbertura']));
 $conveniosAceitos = empty($_POST['conveniosAceitos']) ? null : $_POST['conveniosAceitos'];
 $senha = $_POST['senha'];
 $novaSenha = empty($_POST['novaSenha']) ? null : $_POST['novaSenha'];
@@ -23,7 +23,7 @@ if(mysqli_num_rows($res) > 0){
         $sql = "UPDATE Usuario SET senha='$novaSenha' WHERE idUsuario='$idUsuario'";
         mysqli_query($conn, $sql);
     }
-    $sql = "UPDATE Hospital SET email='$email', endereco='$endereco', telefone='$telefone', conveniosAceitos='$conveniosAceitos' WHERE idUsuario='$idUsuario'";
+    $sql = "UPDATE Hospital SET email='$email', endereco='$endereco', telefone='$telefone', conveniosAceitos='$conveniosAceitos', dataDeAbertura='$dataDeAbertura' WHERE idUsuario='$idUsuario'";
     mysqli_query($conn, $sql);
 }
 header("Location: ../exibicao/hospital_cadastro.php");
