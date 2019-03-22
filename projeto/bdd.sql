@@ -11,7 +11,7 @@ PRIMARY KEY(idUsuario)
 );
 
 CREATE TABLE Paciente(
-cpf INT NOT NULL,
+cpf VARCHAR(11) NOT NULL,
 nome VARCHAR(50) NOT NULL,
 email VARCHAR(50) NOT NULL,
 telefone VARCHAR(11),
@@ -26,7 +26,7 @@ FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
 CREATE TABLE Hospital(
-cnpj INT NOT NULL,
+cnpj VARCHAR(20) NOT NULL,
 nome VARCHAR(50) NOT NULL,
 email VARCHAR(50) NOT NULL,
 telefone VARCHAR(11),
@@ -41,8 +41,8 @@ FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
 CREATE TABLE Medico(
-crm INT NOT NULL,
-cpf INT NOT NULL,
+crm VARCHAR(20) NOT NULL,
+cpf VARCHAR(11) NOT NULL,
 nome VARCHAR(50) NOT NULL,
 especializacao VARCHAR(50),
 telefone VARCHAR(11),
@@ -53,17 +53,17 @@ FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
 CREATE TABLE MedicoHospital(
-crm INT NOT NULL,
-cnpj INT NOT NULL,
+crm VARCHAR(20) NOT NULL,
+cnpj VARCHAR(20) NOT NULL,
 FOREIGN KEY (crm) REFERENCES Medico(crm),
 FOREIGN KEY (cnpj) REFERENCES Hospital(cnpj)
 );
 
 CREATE TABLE Agendamento(
 idAgendamento INT NOT NULL AUTO_INCREMENT,
-cpf INT NOT NULL,
-cnpj INT NOT NULL,
-crm INT ,
+cpf VARCHAR(11) NOT NULL,
+cnpj VARCHAR(20) NOT NULL,
+crm VARCHAR(20) ,
 dataConsulta DATE,
 horarioConsulta TIME,
 dataSolicitacao DATE NOT NULL,

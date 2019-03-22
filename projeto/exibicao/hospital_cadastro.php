@@ -115,5 +115,8 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, $sql));?>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+		document.getElementById("dataDeAbertura").required = true;
+	</script>
 </body>
 </html>

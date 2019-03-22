@@ -71,7 +71,7 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, $sql));?>
 
                     <div class="wrap-input100 validate-input">
                         <label for="dataDeNascimento" class="text-muted">Data de Nascimento:</label>
-                        <input class="form-control" type="date" id="dataDeNascimento"  name='dataDeNascimento' value=<?php echo $info['dataDeNascimento'];?>>
+                        <input class="form-control" type="date" id="dataDeNascimento"  name='dataDeNascimento' value=<?php echo $info['dataDeNascimento'];?> required>
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input ">
@@ -163,5 +163,8 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, $sql));?>
             </div>
         </div>
     </div>
+	<script type="text/javascript">
+		document.getElementById("dataDeNascimento").required = true;
+	</script>
 </body>
 </html>
