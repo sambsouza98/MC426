@@ -8,7 +8,7 @@ require('../transicao/connection.php');
 
 $crm = $_POST['crm'];
 $cpf = $_POST['cpf'];
-$nome = $_POST['nome'];
+$nome = strtoupper($_POST['nome']);
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $cnpj = $_SESSION['cnpj'];
