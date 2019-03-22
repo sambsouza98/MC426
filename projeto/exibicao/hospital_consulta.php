@@ -52,43 +52,40 @@
         <tr>
             <th>Horário</th>
             <th></th>
-            <th></th>
+            <th>Data</th>
             <th>Médico</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <?php
-        $start_date = date('y-m-d');
-        $end_date = '2019-12-31';
-        echo "<select class='form-control' id='data' name='data'>";
-        while (strtotime($start_date) <= strtotime($end_date)) {
-            echo "<option value=".$start_date.">$start_date</option>";
-            $start_date = date ("y-m-d", strtotime("+1 day", strtotime($start_date)));
-        }
-        echo "</select>";
         $start_time = date('H:i:s', strtotime('06:00:00'));
         $end_time = '20:00:00';
 
         $sql = "SELECT * FROM Medico WHERE crm  IN (SELECT crm FROM medicohospital WHERE cnpj = '$cnpj')";
         $medicos = mysqli_query($conn, $sql);
         while (strtotime($start_time) <= strtotime($end_time)) {
+            $start_date = date('y-m-d');
+            $end_date = '2019-12-31';
             echo "<form action='../transicao/hospital_marca_consulta.php' method='post'>
                     <tr>
                     <td>
                     $start_time</td>
                     <td></td>
-                    <td></td>
+                    <td><select class='form-control' id='dataConsulta' name='dataConsulta'>";
+            while (strtotime($start_date) <= strtotime($end_date)) {
+                echo '<option value='.$start_date.'>'.date('d/m/y', strtotime($start_date)).'</option>';
+                $start_date = date ('y-m-d', strtotime('+1 day', strtotime($start_date)));
+            }    echo "</select></td>
                     <td>
-                    <select name='crm'>";
-                    foreach($medicos as $medico){
-                        echo "<option value=".$medico['crm'].">".$medico['nome']."</option>";
-                    };
+                    <select name='crm' class='form-control'>";
+            foreach($medicos as $medico){
+                echo "<option value=".$medico['crm'].">".$medico['nome']."</option>";
+            };
             echo "</select>
                     </td>
                     <input type='hidden' name='horaConsulta' value=".$start_time.">
                     <input type='hidden' name='idAgendamento' value=".$idAgendamento.">
-                    <input type='hidden' name='dataConsulta' id='dataConsulta'>
                     <td><button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">Marcar</button></td>
                 </tr>
                 </form>";
@@ -100,11 +97,5 @@
 
 </div>
 </body>
-<script type="text/javascript">
-    document.getElementById('data').onchange = function() {
-        let e = document.getElementById("data");
-        document.getElementById("dataConsulta").value=e.options[e.selectedIndex].text;
-    };
-</script>
 </html>
 
